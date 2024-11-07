@@ -1,4 +1,4 @@
-package com.example.historiaarica.ui.theme
+package com.example.historiaarica
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.asFlow
 import com.example.historiaarica.Data.NombreEntity
 import com.example.historiaarica.Data.NombreViewModel
 import com.example.historiaarica.ui.theme.HistoriaAricaTheme
@@ -67,7 +68,7 @@ fun BottomNavigationBar() {
 
 @Composable
 fun NombreList(viewModel: NombreViewModel) {
-    val nombres by viewModel.getUltimosNombres().collectAsState(initial = emptyList())
+    val nombres by viewModel.getUltimosNombres().asFlow().collectAsState(initial = emptyList())
     ListContent(nombres = nombres)
 }
 
